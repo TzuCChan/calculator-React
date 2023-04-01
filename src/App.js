@@ -1,7 +1,8 @@
 import { useReducer } from "react";
 import "./calculator.css"
+import Digits from "./Digits";
 
-const ACTIONS = {
+export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
   CHOOSE_OPERATION: 'choose-operation',
   CLEAR: 'clear',
@@ -14,7 +15,7 @@ function reducer(state, { type, payload }) {
     case ACTIONS.ADD_DIGIT:
       return {
         ...state,
-        currentOperand: `${currentOperand || ""}${payload.digit}`
+        currentOperand: `${state.currentOperand || ""}${payload.digit}`
       }
   }
 }
@@ -22,7 +23,7 @@ function reducer(state, { type, payload }) {
 function App() {
   const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {})
 
-  dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 }})
+  // dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 }})
   return (
     <div className="grid">
       <div className="output">
@@ -31,21 +32,21 @@ function App() {
       </div>
       <button className="span-two">C</button>
       <button>D</button>
-      <button>÷</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
+      {/* <Digits digit="÷" dispatch={dispatch} /> */}
+      <Digits digit="1" dispatch={dispatch} />
+      <Digits digit="2" dispatch={dispatch} />
+      <Digits digit="3" dispatch={dispatch} />
       <button>*</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
+      <Digits digit="4" dispatch={dispatch} />
+      <Digits digit="5" dispatch={dispatch} />
+      <Digits digit="6" dispatch={dispatch} />
       <button>+</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
+      <Digits digit="7" dispatch={dispatch} />
+      <Digits digit="8" dispatch={dispatch} />
+      <Digits digit="9" dispatch={dispatch} />
       <button>-</button>
-      <button>.</button>
-      <button>0</button>
+      <Digits digit="." dispatch={dispatch} />
+      <Digits digit="0" dispatch={dispatch} />
       <button className="span-two">=</button>
     </div>
   )
