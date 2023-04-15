@@ -127,7 +127,7 @@ function App() {
         <div className="current-operand">{currentOperand}</div>
       </div>
       <button className="span-two" onClick={() => dispatch({ type: ACTIONS.CLEAR })}>C</button>
-      <button>D</button>
+      <button onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>D</button>
       <Operations operation="÷" dispatch={dispatch} />
       <Digits digit="1" dispatch={dispatch} />
       <Digits digit="2" dispatch={dispatch} />
